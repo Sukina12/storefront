@@ -14,7 +14,7 @@ import {getData} from '../../store/actions/action';
 function Products(props) {
   useEffect (() => {
     props.getData();
-  },[]);
+  },[props]);
 
   return (
     <>
