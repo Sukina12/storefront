@@ -28,7 +28,7 @@ const useStyle = makeStyles(theme => ({
       justifyContent: 'space-between',
   },
 }));
-function Header(props) {
+function Header() {
   
   
   
