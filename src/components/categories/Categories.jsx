@@ -5,7 +5,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
 
-function Categories(props) {
+export function Categories(props) {
   return (
     <>
       <h3>
