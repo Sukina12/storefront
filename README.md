@@ -16,6 +16,9 @@
 #### Lab36 :
 [PullRequestLab36](https://github.com/Sukina12/storefront/pull/1)
 
+#### Lab37 :
+[PullRequestLab37](https://github.com/Sukina12/storefront/pull/2)
+
 ### Test :
 [Test Action](https://github.com/Sukina12/storefront/actions)
 
