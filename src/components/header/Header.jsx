@@ -1,70 +1,57 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import SimpleCart from '../cart/SimpleCart'
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography';
 import IconButton from "@material-ui/core/IconButton";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Chip from '@material-ui/core/Chip';
-import {deleteProduct} from '../../store/actions/deleteProduct';
+import Badge from '@material-ui/core/Badge';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const useStyle = makeStyles((theme) => ({
+
+
+const StyledBadge = withStyles(theme => ({
+  badge: {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+  },
+}))(Badge);
+
+const useStyle = makeStyles(theme => ({
+  root: {
+      flexGrow: 1,
+  },
   space: {
-    justifyContent: "space-between",
+      justifyContent: 'space-between',
   },
 }));
-
 function Header(props) {
-  const style = useStyle();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  return (
-    <AppBar position="static" style={{ backgroundColor: "#38c172" }}>
-      <Toolbar className={style.space}>
-        <Button style={{ fontSize: "2rem" }}>OUR STORE </Button>
-        <IconButton aria-label="CART" onClick={handleClick}>
-          CART ({props.cart.num})
-        </IconButton>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {props.cart.cart.map((product,idx) => {
-            console.log ('product my',props.cart);
-            return (
-              <MenuItem key={product.id} onClick={handleClose} >
-              
-              
-                     <Chip
-                  label = {`${product.name} Item: ${product.item}`}
-                  onDelete = {() => {
-                    props.deleteProduct(product);
-                  }}
-                />
-            
-            </MenuItem>
-            );
-          })}
-        </Menu>
-      </Toolbar>
-    </AppBar>
-  );
+  
+  
+  
+    const style = useStyle();
+    return (
+        <AppBar  position='static' style={{ backgroundColor: '#38c172', color :'black' }}>
+            <Toolbar variant="dense" className={style.space}>
+                {/* <Button> STORE</Button> */}
+                <Typography variant="h6" color="inherit">
+                    OUR STORE
+                </Typography>
+
+                <IconButton aria-label='cart'>
+                    <SimpleCart />
+                    <StyledBadge  color='secondary'>
+                        <ShoppingCartIcon />
+                    </StyledBadge>
+                    {/* badgeContent={props.acart.cart.length} */}
+                </IconButton>
+
+            </Toolbar>
+        </AppBar>
+    );
+  
 }
-const mapStateToprops = (state) => {
-  console.log(state);
-  return {
-    cart: state.cart,
-  };
-};
-const mapDispatchToProps = { deleteProduct };
-export default connect(mapStateToprops,mapDispatchToProps )(Header);
+export default Header;

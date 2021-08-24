@@ -1,9 +1,12 @@
+// import { getProducts } from "../actions/action";
+
 const initialState = {
   products: [
     {
       id:1,
       name: 'Apple MacBook Air M1 2020',
       category: 'Electronics',
+      description:'Apple MackBook Description',
       price: 1100,
       count: 9,
       image:
@@ -13,6 +16,7 @@ const initialState = {
       id:2,
       name: 'Dell XPS 13 2020',
       category: 'Electronics',
+      description:'Dell XPS Description',
       price: 900,
       count: 21,
       image:
@@ -22,6 +26,7 @@ const initialState = {
       id:3,
       name: 'LG CX Series',
       category: 'Electronics',
+      description:'LG CX Series Description',
       price: 1000,
       count: 16,
       image:
@@ -31,6 +36,7 @@ const initialState = {
       id:4,
       name: 'Samsung Smart TV',
       category: 'Electronics',
+      description:'Samsung Smart TV Description',
       price: 700,
       count: 25,
       image:
@@ -40,6 +46,7 @@ const initialState = {
       id:5,
       name: 'Apple iPhone 11 Pro',
       category: 'Electronics',
+      description:'Apple iPhone 11 Description',
       price: 800,
       count: 8,
       image:
@@ -49,6 +56,7 @@ const initialState = {
       id:6,
       name: 'Samsung Galaxy S10',
       category: 'Electronics',
+      description:'Samsung Galaxy S10 Description',
       price: 650,
       count: 12,
       image:
@@ -58,6 +66,7 @@ const initialState = {
       id:7,
       name: 'Single-Serve Pot Pies',
       category: 'Food',
+      description:'  Single-Serve Pot Pies Description',
       price: 6,
       count: 15,
       image:
@@ -67,6 +76,7 @@ const initialState = {
       id:8,
       name: 'Seafood-Flavored Cheese Snacks',
       category: 'Food',
+      description:'Seafood-Flavored Cheese Snacks Description',
       price: 12,
       count: 8,
       image:
@@ -76,6 +86,7 @@ const initialState = {
       id:9,
       name: 'Appetizer-Sized Pizzas',
       category: 'Food',
+      description:'Appetizer-Sized Pizzas Description',
       price: 8,
       count: 11,
       image:
@@ -85,6 +96,7 @@ const initialState = {
       id:10,
       name: 'Prepackaged Deep-Fried Snack Cakes',
       category: 'Food',
+      description:'Prepackaged Deep-Fried Snack Cakes Description',
       price: 6,
       count: 7,
       image:
@@ -94,6 +106,7 @@ const initialState = {
       id:11,
       name: 'Cauliflour Rice Mixes',
       category: 'Food',
+      description:'Cauliflour Rice Mixes Description',
       price: 10,
       count: 16,
       image:
@@ -103,6 +116,7 @@ const initialState = {
       id:12,
       name: 'Food Truck-Inspired Snacks',
       category: 'Food',
+      description:'Food Truck-Inspired Snacks Description',
       price: 8,
       count: 11,
       image:
@@ -123,16 +137,25 @@ const productsReducer = (state = initialState, action) => {
       return { ...state, activeProducts : state.activeProducts };
 
     case 'ADD':
-      state.activeProducts=state.activeProducts.map (product => {
+      state.activeProducts=state.activeProducts.map ((product) => {
         if(product.name === payload.name){
-          if (product.count>0){
-            product.count = product.count -1;
+          if(product.inStock >0){
+            product.inStock = product.inStock -1;
+
+          } else{
+        return product;
+          }
+            
           }
           return product;
-        }
-        return product;
+        
+          
       });
+      console.log(state.activeProducts);
       return {...state, ...state.activeProducts};
+
+    case'GET':
+       return {...state,products:payload}
       
     default :
       return state;
