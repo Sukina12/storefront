@@ -1,4 +1,4 @@
-const initialState = { cart: [], show: false, num: 0 };
+const initialState = { cart: [], num: 0 };
 
 const cartReducer = (state = initialState, action) => {
 
@@ -7,6 +7,7 @@ const cartReducer = (state = initialState, action) => {
   switch (type) {
     case 'ADD':
       if (!state.cart.length) {
+        state.num=0;
         payload['item'] = 1;
         state.num += 1;
         state.cart.push(payload);
@@ -14,7 +15,7 @@ const cartReducer = (state = initialState, action) => {
       } else {
         let flag = false;
         for (let i = 0; i < state.cart.length; i++) {
-          if (payload.id === state.cart[i].id) {
+          if (payload._id === state.cart[i]._id) {
             state.num += 1;
             state.cart[i].item += 1;
             flag = true;
@@ -30,7 +31,7 @@ const cartReducer = (state = initialState, action) => {
     case 'DELETE':
       let flag = false;
       for (let i = 0; i < state.cart.length; i++) {
-        if (payload.id === state.cart[i].id) {
+        if (payload._id === state.cart[i]._id) {
           if (state.cart[i].item > 1 && state.num > 0) {
             state.num -= 1;
             state.cart[i].item -= 1;
