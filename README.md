@@ -20,7 +20,7 @@
 [PullRequestLab37](https://github.com/Sukina12/storefront/pull/2)
 
 ### Lab38 :
-[PullRequestLab38](https://github.com/Sukina12/storefront/pull/3)
+[PullRequestLab38](https://github.com/Sukina12/storefront/pull/5)
 
 ### Test :
 [Test Action](https://github.com/Sukina12/storefront/actions)
