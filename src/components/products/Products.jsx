@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import Button  from "@material-ui/core/Button";
-import CardMedia from "@material-ui/core/CardMedia";
+// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
-import { addCart } from "../../store/actions/addCart";
+import {updateData } from "../../store/actions/action";
 import {getData} from '../../store/actions/action';
 
 
@@ -36,7 +36,7 @@ function Products(props) {
                 style={{
                   borderRadius: "10px",
                   width: "18rem",
-                  height: '30rem',
+                  height: '20rem',
                   marginTop: "5px",
                   marginLeft: "20%",
                   marginBottom: "60px",
@@ -46,14 +46,14 @@ function Products(props) {
                 key={product.id}
               >
                 <CardActionArea>
-                  <CardMedia className={"img"} image={product.url} />
+                  {/* <CardMedia className={"img"} image={product.url} />
                   <img
                     alt={product.name}
                     src={product.url}
                     width="200"
                     height="150"
                     style={{ marginLeft: "50px", marginTop: "10px" }}
-                  ></img>
+                  ></img> */}
                   <CardContent>
                     <h2>{product.name}</h2>
                   </CardContent>
@@ -68,7 +68,7 @@ function Products(props) {
                       onClick={(count) => {
                         console.log ('after Click',product.inStock);
               
-                        if (product.inStock) props.addCart(product);
+                        if (product.inStock) props.updateData(product);
                         else alert("OUT OF STOCK");
                       }}
                     >
@@ -96,6 +96,6 @@ function Products(props) {
 const mapStateToProps = (state) => {
   return { active: state.categories.active, products: state.products};
 };
-const mapDispatchToProps = { addCart,getData };
+const mapDispatchToProps = { updateData,getData };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

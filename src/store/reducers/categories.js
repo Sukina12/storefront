@@ -30,6 +30,8 @@ const categoriesReducer = (state = initialState, action) => {
       // const categories = state.categories;
       state.active = payload;
       return state;
+    case 'GET_C':
+      return {...state,categories:payload.categories}
     default :
       return state;
   }

@@ -9,7 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 // import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 
-import { deleteProduct } from "../../store/actions/deleteProduct";
+import { updateData1 } from "../../store/actions/action";
 
 const useStyle = makeStyles((theme) => ({
   space: {
@@ -50,7 +50,7 @@ function SimpleCart(props) {
               <Chip
                 label={`${product.name} Item: ${product.item}`}
                 onDelete={() => {
-                  props.deleteProduct(product);
+                  props.updateData1(product);
                 }}
               />
             </MenuItem>
@@ -63,6 +63,6 @@ function SimpleCart(props) {
 const mapStateToProps = (state) => {
   return { cart: state.cart };
 };
-const mapDispatchToProps = { deleteProduct };
+const mapDispatchToProps = { updateData1 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleCart);
